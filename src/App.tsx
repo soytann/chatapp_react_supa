@@ -1,7 +1,11 @@
 import "./App.css";
 import { supabase } from "../utils/createClient";
 import { useEffect, useState } from "react";
-import {getAllUsers} from "../utils/supabaseFunctions"
+import { getAllUsers } from "../utils/supabaseFunctions"
+import LoginPage from "./pages/LoginPage";
+import SuccessPage from "./pages/SuccessPage";
+import { Img } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
   const [users, setUsers] = useState<any>([]);
@@ -15,8 +19,15 @@ function App() {
     getUsers();
   },[])
 	return (
-		<>
-			<h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginPage />}
+          />
+          <Route path="/success" element={<SuccessPage />}
+          />
+        </Routes>
+      </BrowserRouter>
 		</>
 	);
 }
