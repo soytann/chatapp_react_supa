@@ -8,7 +8,7 @@ export const getAllUsers = async () => {
 
 export const getMessages = async () => {
 	const messages = await supabase.from("messages").select()
-	.order("created_at")
+	// .order("created_at")
 
 	return messages.data;
 };
