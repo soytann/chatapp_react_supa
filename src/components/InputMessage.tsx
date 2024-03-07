@@ -11,9 +11,6 @@ const InputMessage = () => {
 
 	const insertMessages = async (e: any) => {
 		e.preventDefault();
-
-
-
 		try {
 			await supabase
 				.from("messages")
@@ -56,7 +53,8 @@ const InputMessage = () => {
 					<Input
 						onChange={(e) => { setInput(e.target.value) }}
 						className='w-96'
-						placeholder='message' />
+						placeholder='message'
+						value={input}/>
 					{console.log(input)}
 				</form>
 				<SendRoundedIcon onClick={insertMessages}></SendRoundedIcon>
