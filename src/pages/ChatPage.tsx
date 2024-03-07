@@ -1,11 +1,11 @@
 import React from 'react'
-import ChatBubbles from '../copmopnents/ChatBubbles'
-import InputMessage from '../copmopnents/InputMessage'
+import ChatBubbles from '../components/ChatBubbles'
+import InputMessage from '../components/InputMessage'
 
 const ChatPage = () => {
   return (
     <>
-      <div>
+      <div className='relative'>
         <h1>Chat</h1>
         <ChatBubbles></ChatBubbles>
         <InputMessage></InputMessage>

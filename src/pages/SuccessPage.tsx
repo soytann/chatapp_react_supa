@@ -39,6 +39,7 @@ const SuccessPage = () => {
 				<>
 					<div>
 						<h1>you're logged in</h1>
+						<Button onClick={()=>{navigate("/chatpage")}} >chatへ </Button>
 						<Button onClick={logOutUser} >logout </Button>
 					</div>
 				</>
