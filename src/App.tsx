@@ -8,13 +8,10 @@ import { Img } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ChatPage from "./pages/ChatPage"
 import ProfilePage from "./pages/ProfilePage";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 
 function App() {
   const [users, setUsers] = useState<any>([]);
-  const [user, setUser] = useState({});
 
   useEffect(() => {
     const getUsers = async () => {
@@ -23,37 +20,16 @@ function App() {
       console.log(users);
     }
     getUsers();
-  }, [])
-  
-	// メールからリンクに飛んだor最初のrender時に一回実行
-	useEffect(() => {
-		// get the user current logged in
-		async function getUserData() {
-			await supabase.auth.getUser()
-				.then((data) => {
-					console.log("GETユーザー：", data)
-					//そもそもdata.dataがundifinedであったら、usegetすらするな、useプロパティがあるなら、setしてくれ
-					if (data.data?.user) {
-						setUser(data.data.user);
-					}
-				})
-		}
-    getUserData();
-    console.log(user)
-	}, []);
-
-
+  },[])
 	return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage />}
           />
-          <Route path="/success" element={<SuccessPage
-            user={user}/>}
+          <Route path="/success" element={<SuccessPage />}
           />
-          <Route path="/chatpage" element={<ChatPage
-            user={user} />} />
+          <Route path="/chatpage" element={<ChatPage />} />
           <Route path="/profilepage" element={<ProfilePage />} />
           
         </Routes>
