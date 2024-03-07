@@ -3,7 +3,6 @@ import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "../../utils/createClient";
 import { useNavigate } from "react-router-dom";
-import ChatBubble from "../copmopnents/ChatBubbles";
 import { Button } from "@material-tailwind/react";
 
 const LoginPage = () => {
@@ -19,7 +18,7 @@ const LoginPage = () => {
                 //to LoginPage
                 navigate("/");
             }
-            data.subscription.unsubscribe()
+            // data.subscription.unsubscribe()
         });
 
     }, []);

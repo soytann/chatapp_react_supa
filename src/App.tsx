@@ -7,6 +7,7 @@ import SuccessPage from "./pages/SuccessPage";
 import { Img } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ChatPage from "./pages/ChatPage"
+import ProfilePage from "./pages/ProfilePage";
 
 
 function App() {
@@ -28,7 +29,9 @@ function App() {
           />
           <Route path="/success" element={<SuccessPage />}
           />
-          <Route path="/chatpage" element={<ChatPage/>} />
+          <Route path="/chatpage" element={<ChatPage />} />
+          <Route path="/profilepage" element={<ProfilePage />} />
+          
         </Routes>
       </BrowserRouter>
 		</>
