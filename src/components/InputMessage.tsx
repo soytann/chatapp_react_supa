@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Input } from 'react-daisyui'
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 // import { insertMessages } from '../../utils/supabaseFunctions';
 import { supabase } from '../../utils/createClient';
-import { Auth } from '@supabase/auth-ui-react';
-import { getRealtimeMessages } from '../../utils/supabaseFunctions';
 
 const InputMessage = () => {
 	const [input, setInput] = useState("");
@@ -13,9 +11,6 @@ const InputMessage = () => {
 
 	const insertMessages = async (e: any) => {
 		e.preventDefault();
-
-
-
 		try {
 			await supabase
 				.from("messages")
@@ -25,7 +20,7 @@ const InputMessage = () => {
 					"channel": "realtime-channel",
 					"uid":userID,
 				});
-			console.log(input);
+			console.log(userID);
 			setInput("");
 
 		} catch (error) {
@@ -58,7 +53,8 @@ const InputMessage = () => {
 					<Input
 						onChange={(e) => { setInput(e.target.value) }}
 						className='w-96'
-						placeholder='message' />
+						placeholder='message'
+						value={input}/>
 					{console.log(input)}
 				</form>
 				<SendRoundedIcon onClick={insertMessages}></SendRoundedIcon>
