@@ -24,11 +24,11 @@ const ChatBubbles = () => {
 
 
 	//Realtime設定
-	const getRealtimeMessages = async () => {
-
+	// ？？？？？この場合awaitは有効じゃないらしい。なぜ？
+	const getRealtimeMessages = () => {
 		try {
-			await supabase.
-				channel("realtime_channel") //任意のチャンネル名
+			supabase
+				.channel("realtime_channel") //任意のチャンネル名
 				.on(
 					"postgres_changes", //固定
 					{
@@ -40,13 +40,10 @@ const ChatBubbles = () => {
 						console.log(payload);
 						//データの登録
 						if (payload.eventType === "INSERT") {
-							//     //payloadに新しくinsertされた情報のオブジェクトをDestructuringで変数に代入
-							//     const { id, created_at, text, icon, uid, channel } = payload.new
-							//     setInputText((inputText) => [...inputText])
+							//payloadに新しく追加
 							const newMessage = payload.new;
 							setMessages((prevMessages) => [newMessage, ...prevMessages]);
 						}
-
 					}
 				)
 				.subscribe();
@@ -61,7 +58,6 @@ const ChatBubbles = () => {
 
 
 
-
 	useEffect(() => {
 		(async () => {
 			try {
@@ -72,8 +68,9 @@ const ChatBubbles = () => {
 			};
 		})();
 		getRealtimeMessages();
-			console.log("リアルタイムできてます")
-	}, []);
+		console.log("リアルタイムできてます")
+		
+	}, [messages]);
 
 	return (
 		<>
@@ -82,11 +79,12 @@ const ChatBubbles = () => {
 				{console.log(messages)}
 				{messages.map((message) => (
 					<div key={message.id}>
-						{message.id}
 						<ChatBubble>
 							<ChatBubble.Avatar src={message.icon} />
 							<ChatBubble.Message>
 								{message.text}
+								<ChatBubble.Footer className='text-xs'>{message.uid}</ChatBubble.Footer>
+
 							</ChatBubble.Message>
 							<ChatBubble.Footer className='text-xs'>{message.created_at.slice(11, 16)}</ChatBubble.Footer>
 						</ChatBubble>
