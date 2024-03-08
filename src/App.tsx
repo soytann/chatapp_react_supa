@@ -10,6 +10,7 @@ import ChatPage from "./pages/ChatPage"
 import ProfilePage from "./pages/ProfilePage";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
+import Index from "./pages/phrase/Index";
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
           <Route path="/chatpage" element={<ChatPage
             user={user} />} />
           <Route path="/profilepage" element={<ProfilePage />} />
+          <Route path="/phrase-index" element={<Index />} />
           
         </Routes>
       </BrowserRouter>
