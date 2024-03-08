@@ -11,6 +11,7 @@ import ProfilePage from "./pages/ProfilePage";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import Index from "./pages/phrase/Index";
+import AddPhrases from "./pages/phrase/AddPhrases";
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
             user={user} />} />
           <Route path="/profilepage" element={<ProfilePage />} />
           <Route path="/phrase-index" element={<Index />} />
+          <Route path="/addphrases" element={<AddPhrases />} />
           
         </Routes>
       </BrowserRouter>
