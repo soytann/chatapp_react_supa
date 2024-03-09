@@ -14,7 +14,7 @@ export const getMessages = async () => {
 };
 export const getPhrases = async () => {
 	const messages = await supabase.from("phrases").select()
-	.order("created_at")
+	// .order("created_at")
 
 	return messages.data;
 };
