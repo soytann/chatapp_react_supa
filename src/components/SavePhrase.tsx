@@ -1,68 +1,102 @@
 import React from 'react'
 import { Button } from 'react-daisyui'
-import { Input, Select, Option, Textarea } from '@material-tailwind/react';
+import { Input, Select, Option, Textarea, } from '@material-tailwind/react';
 import { useState } from 'react';
 
 const SavePhrase = () => {
-  const [value, setValue] = useState('default');
+  const [phrase, setPhrase] = useState<string>("");
+  const [meaning, setMeaning] = useState<string>("");
+  const [category, setCategory] = useState<any>("");
+  const [label, setLabel] = useState<any>("");
+  const [memo, setMemo] = useState("");
+  // const [history, seHistory] = useState("");
+
+  function handleClickAddPhrase() {
+
+    console.log("フレーズ", phrase)
+    console.log("意味", meaning)
+    console.log("カテゴリ", category)
+    console.log("ラベル", label)
+    console.log("メモ", memo)
+
+  }
   return (
     <div>
       <div className='mt-20 p-4 bg-gray-100 h-[684px] rounded-xl mx-6 ' >
 
-        <div className=" w-full p-4 font-sans">
-          <p className='font-bold'>Phrase</p>
-          <Input
-            className='w-full'
-            placeholder='Hello' />
-        </div>
-
-        <div className=" w-full p-4 font-sans">
-          <p className='font-bold'>Meaning</p>
-          <Input
-            className='w-full'
-            placeholder='こんにちは' />
-        </div>
-
-        <div className='sm:flex gap-2'>
-          <div className=" w-2/3 p-4 font-sans">
-            <p className='font-bold'>Category</p>
-            <Select
-              onChange={event => setValue(event.target.value)}>
-              <Option value={'Homer'}>あいさつ</Option>
-              <Option value={'Marge'}>意見</Option>
-              <Option value={'Bart'}>感謝</Option>
-              <Option value={'Lisa'}>褒める</Option>
-              <Option value={'Maggie'}>カジュアル</Option>
-            </Select>
+        <form action=""
+          onSubmit={handleClickAddPhrase}>
+          <div className=" w-full p-4 font-sans">
+            <p className='font-bold'>Phrase</p>
+            <Input
+              onChange={e => setPhrase(e.target.value)}
+              className='w-full'
+              placeholder='Hello' />
           </div>
-          <div className=" w-2/3 p-4  font-sans">
-            <p className='font-bold'>Label</p>
-            <Select className='bg-opacity-40'
-              onChange={event => setValue(event.target.value)}>
-              <Option value={'purple'}><Button className='bg-opacity-30' color='primary' shape='circle' size='xs'></Button></Option>
-              <Option value={'blue'}><Button className='bg-opacity-30' color='info' shape='circle' size='xs'></Button></Option>
-              <Option value={'orange'}><Button className='bg-opacity-30' color='warning' shape='circle' size='xs'></Button></Option>
-              <Option value={'red'}><Button className='bg-opacity-30' color='error' shape='circle' size='xs'></Button></Option>
-              <Option value={'green'}><Button className='bg-opacity-30' color='success' shape='circle' size='xs'></Button></Option>
-            </Select>
+          <div className=" w-full p-4 font-sans">
+            <p className='font-bold'>Meaning</p>
+            <Input
+              onChange={e => setMeaning(e.target.value)}
+              className='w-full'
+              placeholder='こんにちは' />
           </div>
-        </div>
+          <div className='sm:flex gap-2'>
+            <div className=" w-2/3 p-4 font-sans">
+              <p className='font-bold'>Category</p>
 
-        <div className=" w-full p-4 py-2 font-sans">
-          <p className='font-bold'>Memo</p>
-          <Textarea
-            className='w-full' />
-        </div>
+              <Select
 
-        <div className=" w-full p-4 py-2 font-sans">
-          <p className='font-bold'>Memo</p>
-          <Textarea
-            className='w-full' />
-        </div>
+                name="category"
+                value={category}
+                onChange={(e: any) => {
+                  setCategory(e);
+                }}
+              >
+                <Option value="あいさつ">あいさつ</Option>
+                <Option value="意見">意見</Option>
+                <Option value="感謝">感謝</Option>
+                <Option value="褒める">褒める</Option>
+                <Option value="カジュアル">カジュアル</Option>
+              </Select>
+            </div>
+            <div className=" w-2/3 p-4  font-sans">
+              <p className='font-bold'>Label</p>
+              <Select
+                multiple={true}
+                name="label"
+                value={label}
+                className='bg-opacity-40'
+                onChange={(e: any) => {
+                  setLabel(e)
+                }}>
+                <Option value="purple"><p className='bg-purple-300 rounded-[50%] text-xs'>　</p></Option>
+                <Option value={"blue"}>blue <p className='bg-blue-300 rounded-[50%] text-xs'>　</p> </Option>
+                <Option value={"yellow"}><p className='bg-yellow-300 rounded-[50%] text-xs'>　</p></Option>
+                <Option value={"red"}><p className='bg-red-300 rounded-[50%] text-xs'>　</p></Option>
+                <Option value={"green"}><p className='bg-green-300 rounded-[50%] text-xs'>　</p></Option>
+              </Select>
+            </div>
+          </div>
+          <div className=" w-full p-4 py-2 font-sans">
+            <p className='font-bold'>Memo</p>
+            <Textarea
+              onChange={e => setMemo(e.target.value)}
+              className='w-full' />
+          </div>
+          <div className=" w-full p-4 py-2 font-sans">
+            <p className='font-bold'>History</p>
+            <Textarea
+              className='w-full' />
+          </div>
+        </form>
+
         <div className='text-center mt-4'>
-        <Button className="bg-white " color="info" size='md'>SAVE</Button>
-
+          <Button
+            onClick={handleClickAddPhrase}
+            className="bg-white" color="info" size='md'>SAVE</Button>
         </div>
+
+
       </div>
     </div>
   )
