@@ -43,7 +43,9 @@ const PhraseCard = () => {
                 <Collapse.Content className="bg-gray-100">
                   <div className='flex gap-4'>
                     <p className='font-bold'>{phrase.meaning}</p>
-                    <Button size="sm" className='mr-5 ml-auto bg-white'>DETAILS</Button>
+                    <Button size="sm"
+                      className='mr-5 ml-auto bg-white'
+                      onClick={()=>{navigate("/details")}}>DETAILS</Button>
                   </div>
                 </Collapse.Content>
               </Collapse>

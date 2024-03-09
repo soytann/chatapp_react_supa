@@ -12,6 +12,7 @@ import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import Index from "./pages/phrase/Index";
 import AddPhrases from "./pages/phrase/AddPhrases";
+import DetailPage from "./pages/phrase/DetailPage";
 
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
           <Route path="/profilepage" element={<ProfilePage />} />
           <Route path="/phrase-index" element={<Index />} />
           <Route path="/addphrases" element={<AddPhrases />} />
+          <Route path="/details" element={<DetailPage />} />
           
         </Routes>
       </BrowserRouter>
