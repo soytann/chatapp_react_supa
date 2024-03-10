@@ -7,16 +7,25 @@ export const getAllUsers = async () => {
 };
 
 export const getMessages = async () => {
-	const messages = await supabase.from("messages").select()
+	const messages = await supabase.from("messages").select("*")
 	.order("created_at")
 
 	return messages.data;
 };
 export const getPhrases = async () => {
-	const messages = await supabase.from("phrases").select()
-	// .order("created_at")
+	const phrases = await supabase.from("phrases").select("*")
+	.order("created_at")
 
-	return messages.data;
+	return phrases.data;
+};
+export const getSelectedPhrases = async (id) => {
+	const selectedPhrase = await supabase
+		.from("phrases")
+		.select("*")
+		.eq("id",id)
+	// .order("cre, ated_at")
+
+	return selectedPhrase.data;
 };
 
 

@@ -4,24 +4,14 @@ import { getPhrases } from '../../utils/supabaseFunctions'
 import { Message } from '@mui/icons-material';
 // import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
-const PhraseCard = () => {
-  const [phrases, setPhrases] = useState<any>([]);
+  const PhraseCard = ({phrases}) => {
   const navigate = useNavigate();
-  
-  useEffect(() => {
-    (async () => {
-      try {
-        const fetchedPhrases = await getPhrases();
-        setPhrases(fetchedPhrases);
-      } catch (error) {
-        console.error("フレーズ取れてないよ", error);
-      };
-    })();
 
-    console.log("phraseできてます", phrases)
-  }, []);
+  
+  
 
   return (
     <>
@@ -45,7 +35,11 @@ const PhraseCard = () => {
                     <p className='font-bold'>{phrase.meaning}</p>
                     <Button size="sm"
                       className='mr-5 ml-auto bg-white'
-                      onClick={()=>{navigate("/details")}}>DETAILS</Button>
+                      onClick={() => {
+                        const id = phrase.id
+                        console.log(id)
+                        navigate("/details",{state:{id}})
+                      }}>DETAILS</Button>
                   </div>
                 </Collapse.Content>
               </Collapse>
