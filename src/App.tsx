@@ -13,11 +13,15 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import Index from "./pages/phrase/Index";
 import AddPhrases from "./pages/phrase/AddPhrases";
 import DetailPage from "./pages/phrase/DetailPage";
+import { getPhrases } from './../utils/supabaseFunctions'
+
 
 
 function App() {
   const [users, setUsers] = useState<any>([]);
   const [user, setUser] = useState({});
+  const [phrases, setPhrases] = useState<any>([]); //PhraseCardからお引越し
+
 
   useEffect(() => {
     const getUsers = async () => {
@@ -45,6 +49,19 @@ function App() {
     console.log(user)
 	}, []);
 
+//PhraseCardからお引越し
+  useEffect(() => {
+    (async () => {
+      try {
+        const fetchedPhrases = await getPhrases();
+        setPhrases(fetchedPhrases);
+      } catch (error) {
+        console.error("フレーズ取れてないよ", error);
+      };
+    })();
+
+    console.log("phraseできてます", phrases)
+  }, []);
 
 	return (
     <>
@@ -58,9 +75,11 @@ function App() {
           <Route path="/chatpage" element={<ChatPage
             user={user} />} />
           <Route path="/profilepage" element={<ProfilePage />} />
-          <Route path="/phrase-index" element={<Index />} />
+          <Route path="/phrase-index" element={<Index
+          phrases={ phrases}/>} />
           <Route path="/addphrases" element={<AddPhrases />} />
-          <Route path="/details" element={<DetailPage />} />
+          <Route path="/details" element={<DetailPage
+            phrases={ phrases} />} />
           
         </Routes>
       </BrowserRouter>
