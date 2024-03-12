@@ -3,7 +3,7 @@ import { Navbar, Menu, Button } from 'react-daisyui'
 const Header = () => {
   return (
     <div>
-      <div className='fixed top-0 left-[250px] w-full bg-white bg-opacity-95 z-10'>
+      <div className='fixed top-0 w-full bg-white bg-opacity-95 z-10'>
 
 
         <Navbar >

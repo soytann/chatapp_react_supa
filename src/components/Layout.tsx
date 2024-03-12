@@ -1,17 +1,24 @@
-import React from 'react'
-import { ReactNode } from 'react'
+import React,{ ReactNode } from 'react'
 import Header from './Header';
 import SideBar from "./SideBar"
+
+
 type Props = {
   children: ReactNode
 };
 
-const Layout = ({children} : Props) => {
+const Layout = ({ children }: Props) => {
+  console.log(children)
   return (
-    <div>
-      <Header />
-      <SideBar/>
-      {children}
+    <div className='layout'>
+      <SideBar />
+
+      <div className='flex ml-[250px]'>
+        <Header />
+        <main className='w-full'>
+          {children}
+        </main>
+      </div>
     </div>
   )
 }
