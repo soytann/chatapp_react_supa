@@ -14,6 +14,7 @@ import Index from "./pages/phrase/Index";
 import AddPhrases from "./pages/phrase/AddPhrases";
 import DetailPage from "./pages/phrase/DetailPage";
 import { getPhrases } from './../utils/supabaseFunctions'
+import Layout from "./components/Layout";
 
 
 
@@ -67,19 +68,23 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginPage />}
+          <Route path="/" element={<LoginPage
+          user={user}/>}
           />
-          <Route path="/success" element={<SuccessPage
-            user={user}/>}
-          />
-          <Route path="/chatpage" element={<ChatPage
-            user={user} />} />
-          <Route path="/profilepage" element={<ProfilePage />} />
-          <Route path="/phrase-index" element={<Index
-          phrases={ phrases}/>} />
-          <Route path="/addphrases" element={<AddPhrases />} />
-          <Route path="/details" element={<DetailPage
-            phrases={ phrases} />} />
+  
+          <Route element={<Layout/>}>
+            <Route path="/success" element={<SuccessPage
+              user={user}/>}
+            />
+            <Route path="/chatpage" element={<ChatPage
+              user={user} />} />
+            <Route path="/profilepage" element={<ProfilePage />} />
+            <Route path="/phrase-index" element={<Index
+            phrases={ phrases}/>} />
+            <Route path="/addphrases" element={<AddPhrases />} />
+            <Route path="/details" element={<DetailPage
+              phrases={ phrases} />} />
+          </Route>
           
         </Routes>
       </BrowserRouter>

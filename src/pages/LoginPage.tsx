@@ -11,7 +11,7 @@ const LoginPage = () => {
     useEffect(() => {
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
             console.log(event, session);
-            if (event === "SIGNED_IN") {
+            if (event === "SIGNED_IN" || "INITIAL_SESSION" ) {
                 //to succeeded URL
                 navigate("/success");
             } else if (event !== "SIGNED_IN") {
@@ -25,16 +25,17 @@ const LoginPage = () => {
 
     return (
         <>
-            <Button>あはは</Button>
-            <h1 className="text-red-200">Login</h1>
-            <Auth
-                supabaseClient={supabase}
-                appearance={{ theme: ThemeSupa }}
-                theme="dark"
-                providers={['google', 'facebook',]}
 
-            // onlyThirdPartyProviders
-            />
+
+            <div className="sm:m-4 p-24" >
+                <Auth
+                    supabaseClient={supabase}
+                    appearance={{ theme: ThemeSupa }}
+                    theme="dark"
+                    providers={['google', 'facebook',]}
+                // onlyThirdPartyProviders
+                />
+            </div>
         </>
     );
 };
