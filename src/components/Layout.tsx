@@ -5,7 +5,7 @@ import SideBar from "./SideBar"
 
 type Props = {
   children: ReactNode
-  handleOpenPhrases: any //書き直す
+  handleOpenPhrases: (isOpen: boolean) => void; //書き直す
   isPhraseOpen: any //書き直す
   phrases: string,
 };
