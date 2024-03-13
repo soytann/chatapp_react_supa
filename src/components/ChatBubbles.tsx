@@ -6,10 +6,11 @@ import { supabase } from '../../utils/createClient'
 import { Auth } from '@supabase/auth-ui-react'
 
 type Props = {
-  user:string,
+	user: string,
+	handleClosePhrases:any,
 }
 
-const ChatBubbles = ({user}:Props) => {
+const ChatBubbles = ({user,handleClosePhrases}:Props) => {
 	const [messages, setMessages] = useState<any>([]);
 	const [inputText, setInputText] = useState("");
 
@@ -79,7 +80,8 @@ const ChatBubbles = ({user}:Props) => {
 		<>
 
 
-			<div className=''>
+			<div className=''
+				onClick={handleClosePhrases}>
 				{messages.map((message) => (
 					<div key={message.id}>
 									{console.log(user.id)}

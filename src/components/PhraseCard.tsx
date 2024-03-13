@@ -16,15 +16,12 @@ import { Link } from 'react-router-dom';
   return (
     <>
       {/* <AddCircleOutlineRoundedIcon className='fixed right-2 top-20'/> */}
-      <Button
-        onClick={() => { navigate("/addphrases")} }
-        className='fixed right-2 top-20' size='sm' color='primary'>Add</Button>
-      <div className='pt-28'>
+      <div className=''>
         {phrases.map((phrase) => (
           <div key= {phrase.id}>
-            <div className='py-1'>
+            <div className='pt-1'>
               <Collapse checkbox>
-                <Collapse.Title className="bg-gray-100 text-xl font-medium" >
+                <Collapse.Title className="bg-gray-100  font-medium" >
                   <div className="flex gap-2 items-center">
                     <Badge>{phrase.category}</Badge>
                   </div>
@@ -47,7 +44,7 @@ import { Link } from 'react-router-dom';
           </div>
         ))}
       </div>
-
+      <div className='pt-1'>
       <Collapse checkbox>
         <Collapse.Title className="bg-gray-100 text-xl font-medium" >
           <Badge color="primary">
@@ -62,14 +59,15 @@ import { Link } from 'react-router-dom';
           </div>
         </Collapse.Content>
       </Collapse>
-
+</div>
+        
       <div className='py-1'>
         <Collapse checkbox>
           <Collapse.Title className="bg-gray-100 text-xl font-medium" >
             <Badge color="secondary">
               カジュアル
             </Badge>
-            <p className='font-bold'>I am freaking out</p>
+            <p className='font-semibold w-[100px]:font-bold'>I am freaking out</p>
           </Collapse.Title>
           <Collapse.Content className="bg-gray-100">
             <p>パニクっている</p>
@@ -79,7 +77,7 @@ import { Link } from 'react-router-dom';
       </div>
 
       <Collapse checkbox>
-        <Collapse.Title className="bg-gray-100 text-xl font-medium" >
+        <Collapse.Title className="bg-gray-100 peer-checked:bg-blue-200 peer-checked:text-secondary-content" >
           <div className='text-xs'>カテゴリー:
             <span>
               <Badge color="accent">
@@ -88,7 +86,7 @@ import { Link } from 'react-router-dom';
             </span></div>
           <p className='font-bold'>I’m proud of you</p>
         </Collapse.Title>
-        <Collapse.Content className="bg-gray-100">
+        <Collapse.Content className="bg-primary text-primary-content peer-checked:bg-blue-200 peer-checked:text-secondary-content">
           <p>すごいじゃん！、さすがだね！、私もうれしい</p>
 
         </Collapse.Content>
@@ -103,7 +101,7 @@ import { Link } from 'react-router-dom';
                   No Category
                 </Badge>
               </span></div>
-            <p className='font-bold text-lg'>whatchamacallit</p>
+            <p className='font-bold '>whatchamacallit</p>
           </Collapse.Title>
           <Collapse.Content className="bg-primary text-primary-content peer-checked:bg-blue-200 peer-checked:text-secondary-content">
             <div className='flex gap-4'>
@@ -114,34 +112,8 @@ import { Link } from 'react-router-dom';
         </Collapse>
       </div>
 
-      <div className='my-1'>
-        <Collapse className="group" checkbox>
-          <Collapse.Title className="bg-gray-100 peer-checked:bg-blue-200 peer-checked:text-secondary-content">
-            <p className='text-xs'>カテゴリー: <span>No Category</span></p>
-            <p className='font-bold text-lg'>It’s no big deal</p>
-          </Collapse.Title>
-          <Collapse.Content className="bg-primary text-primary-content peer-checked:bg-blue-200 peer-checked:text-secondary-content">
-            <p>大したことないよ、平気だよ</p>
-          </Collapse.Content>
-        </Collapse>
-      </div>
 
-      <div className='py-1'>
-        <Collapse className="group" checkbox>
-          <Collapse.Title className="bg-gray-100 peer-checked:bg-blue-200 peer-checked:text-secondary-content">
-            <div className='text-xs'>カテゴリー:
-              <span>
-                <Badge color="neutral">
-                  No Category
-                </Badge>
-              </span></div>
-            <p className='font-bold text-lg'>I’m(We’re) in the same boat</p>
-          </Collapse.Title>
-          <Collapse.Content className="bg-primary text-primary-content peer-checked:bg-blue-200 peer-checked:text-secondary-content">
-            <p>同じ立場にいる/同じ状況である</p>
-          </Collapse.Content>
-        </Collapse>
-      </div>
+
 
 
 

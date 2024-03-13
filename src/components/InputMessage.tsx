@@ -5,7 +5,11 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 // import { insertMessages } from '../../utils/supabaseFunctions';
 import { supabase } from '../../utils/createClient';
 
-const InputMessage = () => {
+type Props = {
+  handleOpenPhrases:any
+}
+
+const InputMessage = ({ handleOpenPhrases}: Props) => {
 	const [input, setInput] = useState("");
 	const [userID, setUserID] = useState("");
 
@@ -27,6 +31,9 @@ const InputMessage = () => {
 			console.error(error);
 		}
 	}
+
+
+
 	useEffect(() => {
 		// const { data } = supabase.auth.getUser()
 		// if (data.user !== null) {
@@ -48,7 +55,9 @@ const InputMessage = () => {
 	return (
 		<div>
 			<div className="flex lg component-preview p-4 items-center justify-center gap-2 font-sans fixed bottom-0 w-full ">
-				<AddRoundedIcon />
+				<AddRoundedIcon
+					onClick={handleOpenPhrases}
+					className='cursor-pointer' />
 				<form onSubmit={insertMessages}>
 					<Input
 						onChange={(e) => { setInput(e.target.value) }}

@@ -22,7 +22,7 @@ function App() {
   const [users, setUsers] = useState<any>([]);
   const [user, setUser] = useState({});
   const [phrases, setPhrases] = useState<any>([]); //PhraseCardからお引越し
-
+  const [isPhraseOpen, setIsPhraseOpen] = useState(false);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -64,6 +64,15 @@ function App() {
     console.log("phraseできてます", phrases)
   }, []);
 
+
+  function handleOpenPhrases(){
+    setIsPhraseOpen(true);
+    console.log(isPhraseOpen)
+  }
+  function handleClosePhrases(){
+    setIsPhraseOpen(false)
+  }
+
   return (
     <>
       <BrowserRouter>
@@ -71,23 +80,10 @@ function App() {
           <Route path="/" element={<LoginPage
             user={user} />}
           />
-          {/* <Route element={<Layout/>}> */}
-
-          {/* <Route path="/success" element={<SuccessPage
-              user={user} />}
-            />
-            <Route path="/chatpage" element={<ChatPage
-              user={user} />} />
-            <Route path="/profilepage" element={<ProfilePage />} />
-            <Route path="/phraseIndex" element={<Index
-              phrases={phrases} />} />
-            <Route path="/addphrases" element={<AddPhrases />} />
-            <Route path="/details" element={<DetailPage
-              phrases={phrases} />} /> */}
-          {/* </Route> */}
 
           <Route path="/success" element={<Layout><SuccessPage user={user} /></Layout>} />
-          <Route path="/chatpage" element={<Layout><ChatPage user={user} /></Layout>} />
+          <Route path="/chatpage" element={<Layout isPhraseOpen={isPhraseOpen} phrases={phrases}><ChatPage user={user}
+            handleOpenPhrases={ handleOpenPhrases} handleClosePhrases={handleClosePhrases} /></Layout>} />
           <Route path="/profilepage" element={<Layout><ProfilePage /></Layout>} />
           <Route path="/phrase-index" element={<Layout><Index phrases={phrases} /></Layout>} />
           <Route path="/addphrases" element={<Layout><AddPhrases /></Layout>} />

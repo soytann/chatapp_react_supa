@@ -69,7 +69,7 @@ const SavePhrase = () => {
               className='w-full'
               placeholder='こんにちは' />
           </div>
-          <div className='sm:flex gap-2'>
+          <div className='md:flex gap-1'>
             <div className=" w-2/3 p-4 font-sans">
               <p className='font-bold'>Category</p>
 
