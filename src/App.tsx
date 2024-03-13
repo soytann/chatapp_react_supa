@@ -82,7 +82,7 @@ function App() {
           />
 
           <Route path="/success" element={<Layout><SuccessPage user={user} /></Layout>} />
-          <Route path="/chatpage" element={<Layout isPhraseOpen={isPhraseOpen} phrases={phrases}><ChatPage user={user}
+          <Route path="/chatpage" element={<Layout isPhraseOpen={isPhraseOpen} phrases={phrases} handleOpenPhrases={handleOpenPhrases} ><ChatPage user={user}
             handleOpenPhrases={ handleOpenPhrases} handleClosePhrases={handleClosePhrases} /></Layout>} />
           <Route path="/profilepage" element={<Layout><ProfilePage /></Layout>} />
           <Route path="/phrase-index" element={<Layout><Index phrases={phrases} /></Layout>} />

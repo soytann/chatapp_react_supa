@@ -6,13 +6,23 @@ import { Search } from '@mui/icons-material';
 import { Input } from 'react-daisyui';
 
 type Props = {
-  handleOpenPhrases: any //書き直す
-  isPhraseOpen: any //書き直す
-  phrases:string
+  handleOpenPhrases: (isOpen: boolean) => void; //書き直す
+  isPhraseOpen: boolean; //書き直す
+  phrases: string;
 };
 
-const SideBar = ({ isPhraseOpen, phrases }): Props => {
-  const [saerchPhrases, setSearchPhrases] = useState([]);
+const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases }): Props => {
+  const [searchPhrases, setSearchPhrases] = useState('');
+
+
+  function handleSearchPhrases(e) {
+    e.preventDefault();
+    handleOpenPhrases(true);
+    console.log(e)
+    console.log("@i@i@i")
+    console.log(searchPhrases)
+  }
+
 
   return (
 
@@ -30,11 +40,17 @@ const SideBar = ({ isPhraseOpen, phrases }): Props => {
                   <MenuItem> Pie charts </MenuItem>
                   <MenuItem> Line charts </MenuItem>
                 </SubMenu>
-                <div className='text-center'>
-                  <Input
-                    size='sm'
-                    placeholder='Search Phrases' />
-                </div>
+                <form action=""
+                  onSubmit={ handleSearchPhrases }
+                >
+                  <div className='text-center'>
+                    <Input
+                      value={searchPhrases}
+                      onChange={(e) => setSearchPhrases(e.target.value)}
+                      size='sm'
+                      placeholder='Search Phrases' />
+                  </div>
+                </form>
               </div>
               <div className=' w-[242px] h-full fixed top-[88px] overflow-y-scroll mx-1 pb-32 text-md'>
 
