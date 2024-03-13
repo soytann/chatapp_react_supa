@@ -8,8 +8,10 @@ import SideBar from '../components/SideBar'
 
 type Props = {
   user: string,
+  handleOpenPhrases: any
+  handleClosePhrases:any
 }
-const ChatPage = ({ user }: Props) => {
+const ChatPage = ({ user,handleOpenPhrases, handleClosePhrases }: Props) => {
   return (
     <>
       
@@ -18,8 +20,8 @@ const ChatPage = ({ user }: Props) => {
       </div>
       <SideBar/> */}
       <div className="my-20">
-        <ChatBubbles user={user}></ChatBubbles>
-        <InputMessage></InputMessage>
+        <ChatBubbles user={user} handleClosePhrases={handleClosePhrases}></ChatBubbles>
+        <InputMessage handleOpenPhrases={handleOpenPhrases}></InputMessage>
       </div>
     </>
   )

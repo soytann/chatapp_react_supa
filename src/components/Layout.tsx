@@ -5,13 +5,18 @@ import SideBar from "./SideBar"
 
 type Props = {
   children: ReactNode
+  handleOpenPhrases: any //書き直す
+  isPhraseOpen: any //書き直す
+  phrases: string,
 };
 
-const Layout = ({ children }: Props) => {
-  console.log(children)
+const Layout = ({ children,handleOpenPhrases,isPhraseOpen,phrases }: Props) => {
+  // console.log(children)
   return (
     <div className='layout'>
-      <SideBar />
+      <SideBar handleOpenPhrases={handleOpenPhrases}
+        isPhraseOpen={isPhraseOpen}
+        phrases={ phrases } />
 
       <div className='flex ml-[250px]'>
         <Header />
