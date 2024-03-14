@@ -64,7 +64,7 @@ function App() {
     console.log("phraseできてます", phrases)
   }, []);
 
-
+//SideBarフレーず表示
   function handleOpenPhrases(){
     setIsPhraseOpen(true);
     console.log(isPhraseOpen)

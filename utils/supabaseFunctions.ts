@@ -31,7 +31,9 @@ export const searchedPhrases = async (value: string) => {
 	const searchedPhrase = await supabase
 		.from("phrases")
 		.select()
-		.like("phrase", value)
+		.like("phrase",  `%${value}%`)
+		// .or(`meaning ilike '%${value}%'`)
+		// .or(`memo ilike '%${value}%'`);
 
 	return searchedPhrase.data;
 };
