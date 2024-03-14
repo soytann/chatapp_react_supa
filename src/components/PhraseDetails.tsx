@@ -71,7 +71,7 @@ const PhraseDetails = ({ phrases }) => {
                 <div className='bg-white bg-opacity-80 p-4 h-auto shadow rounded-lg'>
                   <p className='font-semibold'>{ selected.history}</p>
                 </div>
-              </div>
+              </div>f
             </>
           ))}
         </div>

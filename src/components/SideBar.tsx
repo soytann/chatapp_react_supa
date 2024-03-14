@@ -4,6 +4,7 @@ import { Avatar } from 'react-daisyui';
 import PhraseCard from './PhraseCard';
 import { Search } from '@mui/icons-material';
 import { Input } from 'react-daisyui';
+import { searchedPhrases } from '../../utils/supabaseFunctions';
 
 type Props = {
   handleOpenPhrases: (isOpen: boolean) => void; //書き直す
@@ -15,12 +16,19 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases }): Props => {
   const [searchPhrases, setSearchPhrases] = useState('');
 
 
-  function handleSearchPhrases(e) {
+  async function handleSearchPhrases(e) {
     e.preventDefault();
-    handleOpenPhrases(true);
-    console.log(e)
-    console.log("@i@i@i")
-    console.log(searchPhrases)
+    try {
+      handleOpenPhrases(true);
+      console.log(e)
+      console.log("@i@i@i")
+      console.log(searchPhrases)
+      const results = await searchedPhrases(searchPhrases)
+      console.log(results)
+      
+    } catch (error) {
+      console.error("検索できてません",error)
+    }
   }
 
 
@@ -58,6 +66,8 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases }): Props => {
 
               </div>
             </Menu>
+
+
             :
             <Menu>
               <SubMenu label="Friends">
