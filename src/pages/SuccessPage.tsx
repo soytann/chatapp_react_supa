@@ -22,7 +22,7 @@ const SuccessPage = ({user}:Props) => {
 
 	return (
 
-		<Layout>
+
 			<div>
 				{console.log(user.id)}
 				{/* userオブジェクトがあるかどうかチェック */}
@@ -43,7 +43,7 @@ const SuccessPage = ({user}:Props) => {
 					</>
 				}
 			</div>
-		</Layout>
+
 	)
 }
 
