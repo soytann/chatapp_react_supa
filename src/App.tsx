@@ -1,6 +1,6 @@
 import "./App.css";
 import { supabase } from "../utils/createClient";
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllUsers } from "../utils/supabaseFunctions"
 import LoginPage from "./pages/LoginPage";
 import SuccessPage from "./pages/SuccessPage";
@@ -15,7 +15,6 @@ import AddPhrases from "./pages/phrase/AddPhrases";
 import DetailPage from "./pages/phrase/DetailPage";
 import { getPhrases } from './../utils/supabaseFunctions'
 import Layout from "./components/Layout";
-import { fetchSearchedPhrases } from "../utils/supabaseFunctions";
 
 
 
@@ -24,11 +23,6 @@ function App() {
   const [user, setUser] = useState({});
   const [phrases, setPhrases] = useState<any>([]); //PhraseCardからお引越し
   const [isPhraseOpen, setIsPhraseOpen] = useState(false);
-  // const useResultContext = createContext();
-  const [searchPhrases, setSearchPhrases] = useState('');
-  const [results, setResults] = useState<any>([]);
-
-
 
   useEffect(() => {
     const getUsers = async () => {
@@ -70,39 +64,13 @@ function App() {
     console.log("phraseできてます", phrases)
   }, []);
 
-  //SideBarフレーず表示
-  function handleOpenPhrases() {
+//SideBarフレーず表示
+  function handleOpenPhrases(){
     setIsPhraseOpen(true);
     console.log(isPhraseOpen)
   }
-  function handleClosePhrases() {
+  function handleClosePhrases(){
     setIsPhraseOpen(false)
-  }
-
-  //SideBarからお引越し、resultsをuseContextでグローバル管理
-  function handleChangeSearchPhrases(e) {
-    setSearchPhrases(e.target.value)
-}
-//SideBarからお引越し
-  function handleUsePhrase() {
-    console.log("useしたい")
-    console.log(results)
-  }
-
-//SideBarからお引越し
-  async function handleSearchPhrases(e) {
-    e.preventDefault();
-    try {
-      handleOpenPhrases(true);
-      console.log(searchPhrases)
-      const searchedResults = await fetchSearchedPhrases(searchPhrases)
-      setResults(searchedResults);
-      console.log(results)
-
-    } catch (error) {
-      console.error("検索できてません", error)
-
-    }
   }
 
   return (
@@ -114,23 +82,8 @@ function App() {
           />
 
           <Route path="/success" element={<Layout><SuccessPage user={user} /></Layout>} />
-          {/* <useResultContext.Provider> */}
-          <Route path="/chatpage" element={<Layout
-            isPhraseOpen={isPhraseOpen}
-            phrases={phrases}
-            handleOpenPhrases={handleOpenPhrases}
-            handleSearchPhrases={handleSearchPhrases}
-            searchPhrases={searchPhrases}
-            results={results}
-            handleChangeSearchPhrases={handleChangeSearchPhrases}
-            handleUsePhrase={handleUsePhrase}
-          ><ChatPage
-              user={user}
-              handleOpenPhrases={handleOpenPhrases}
-              handleClosePhrases={handleClosePhrases}
-              results={results}
-              /></Layout>} />
-          {/* </useResultContext.Provider> */}
+          <Route path="/chatpage" element={<Layout isPhraseOpen={isPhraseOpen} phrases={phrases} handleOpenPhrases={handleOpenPhrases} ><ChatPage user={user}
+            handleOpenPhrases={ handleOpenPhrases} handleClosePhrases={handleClosePhrases} /></Layout>} />
           <Route path="/profilepage" element={<Layout><ProfilePage /></Layout>} />
           <Route path="/phrase-index" element={<Layout><Index phrases={phrases} /></Layout>} />
           <Route path="/addphrases" element={<Layout><AddPhrases /></Layout>} />

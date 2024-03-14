@@ -27,24 +27,15 @@ export const getSelectedPhrases = async (id) => {
 
 	return selectedPhrase.data;
 };
-export const fetchSearchedPhrases = async (value: string) => {
+export const searchedPhrases = async (value: string) => {
 	const searchedPhrase = await supabase
 		.from("phrases")
 		.select()
-		.like("phrase", `%${value}%`)
-		console.log(searchedPhrase)
-	const searchedMeaning = await supabase
-		.from("phrases")
-		.select()
-		.like("meaning",  `%${value}%`)
-	const searchedMemo = await supabase
-		.from("phrases")
-		.select()
-		.like("memo",  `%${value}%`)
+		.like("phrase",  `%${value}%`)
 		// .or(`meaning ilike '%${value}%'`)
 		// .or(`memo ilike '%${value}%'`);
 
-	return  [ ...searchedPhrase.data, ...searchedMeaning.data, ...searchedMemo.data ];
+	return searchedPhrase.data;
 };
 
 

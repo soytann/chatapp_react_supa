@@ -2,42 +2,39 @@ import React, { useState } from 'react'
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Avatar, Collapse, Badge, Button } from 'react-daisyui';
 import PhraseCard from './PhraseCard';
+import { Search } from '@mui/icons-material';
 import { Input } from 'react-daisyui';
+import { searchedPhrases } from '../../utils/supabaseFunctions';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {
   handleOpenPhrases: (isOpen: boolean) => void; //書き直す
   isPhraseOpen: boolean; //書き直す
   phrases: string;
-  handleSearchPhrases: (e: React.FormEvent<HTMLFormElement>) => void; // handleSearchPhrases の型を追加
-  searchPhrases: string;
-  results: string[];
-  handleChangeSearchPhrases: (e: React.ChangeEvent<HTMLInputElement>) => void; // handleChangeSearchPhrases の型を追加
-  handleUsePhrase: () => void;
 };
 
-const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,searchPhrases,results,handleChangeSearchPhrases,handleUsePhrase}): Props => {
-  // const [searchPhrases, setSearchPhrases] = useState('');
-  // const [results, setResults] = useState<any>([]);
+const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases }): Props => {
+  const [searchPhrases, setSearchPhrases] = useState('');
+  const [results, setResults] = useState<any>([]);
   const navigate = useNavigate();
 
-  // async function handleSearchPhrases(e) {
-  //   e.preventDefault();
-  //   try {
-  //     handleOpenPhrases(true);
-  //     console.log(searchPhrases)
-  //     const searchedResults = await fetchsearchedPhrases(searchPhrases)
-  //     setResults(searchedResults);
-  //     console.log(results)
+  async function handleSearchPhrases(e) {
+    e.preventDefault();
+    try {
+      handleOpenPhrases(true);
+      console.log(searchPhrases)
+      const searchedResults = await searchedPhrases(searchPhrases)
+      setResults(searchedResults);
+      console.log(results)
 
-  //   } catch (error) {
-  //     console.error("検索できてません", error)
+    } catch (error) {
+      console.error("検索できてません", error)
 
-  //   }
+    }
 
 
 
-  
+  }
 
 
 
@@ -63,7 +60,7 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,
                   <div className='text-center'>
                     <Input
                       value={searchPhrases}
-                      onChange={ handleChangeSearchPhrases }
+                      onChange={(e) => setSearchPhrases(e.target.value)}
                       size='sm'
                       placeholder='Search Phrases' />
                   </div>
@@ -78,23 +75,17 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,
 
                     <div key={result.id}>
                       <div className='pt-1'>
-                        <Collapse >
+                        <Collapse checkbox>
                           <Collapse.Title className="bg-gray-100  font-medium" >
                             <div className="flex gap-2 items-center">
                               <Badge>{result.category}</Badge>
                             </div>
                             <div className='flex'>
 
-                              <p className='font-bold'>{result.phrase}</p>
-                              
-                              <Button
-                                size="xs"
-                                className='ml-auto bg-white'
-                                onClick={() => {
-                                  handleUsePhrase()
-                                  console.log("使いたいやつ",result.phrase)
-                                  
-                                }}
+                            <p className='font-bold'>{result.phrase}</p>
+                            <Button size="xs"
+                                className=' ml-auto bg-white'
+                                onClick={ handleUsePhrase}
                                 >USE</Button>
                               </div>
 
@@ -118,7 +109,7 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,
                   ))
                 )
                   :
-                  (<p>検索結果はありません</p>
+                  (                <PhraseCard phrases={phrases} />
                   )
                 }
 
