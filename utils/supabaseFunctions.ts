@@ -23,9 +23,17 @@ export const getSelectedPhrases = async (id) => {
 		.from("phrases")
 		.select("*")
 		.eq("id",id)
-	// .order("cre, ated_at")
+	// .order("created_at")
 
 	return selectedPhrase.data;
+};
+export const searchedPhrases = async (value: string) => {
+	const searchedPhrase = await supabase
+		.from("phrases")
+		.select()
+		.like("phrase", value)
+
+	return searchedPhrase.data;
 };
 
 
