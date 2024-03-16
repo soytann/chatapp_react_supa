@@ -24,6 +24,14 @@ function App() {
   const [phrases, setPhrases] = useState<any>([]); //PhraseCardからお引越し
   const [isPhraseOpen, setIsPhraseOpen] = useState(false);
 
+  // const useResultContext = createContext();
+  const [searchPhrases, setSearchPhrases] = useState(''); //sidebar
+  const [results, setResults] = useState<any>([]); //sidebar
+  const [input, setInput] = useState("");
+	const [userID, setUserID] = useState("");
+
+
+
   useEffect(() => {
     const getUsers = async () => {
       const users = await getAllUsers()
@@ -73,6 +81,91 @@ function App() {
     setIsPhraseOpen(false)
   }
 
+
+  //SideBarからお引越し、resultsをuseContextでグローバル管理
+  function handleChangeSearchPhrases(e) {
+    setSearchPhrases(e.target.value)
+}
+//SideBarからお引越し
+  // function handleUsePhrase() {
+  //   console.log("useしたい")
+  //   console.log(results)
+  //   results.map((result) => {
+  //     console.log(result)
+  //   })
+
+  // }
+
+//SideBarからお引越し
+  async function handleSearchPhrases(e) {
+    e.preventDefault();
+    try {
+      handleOpenPhrases(true);
+      console.log(searchPhrases)
+      const searchedResults = await fetchSearchedPhrases(searchPhrases)
+      setResults(searchedResults);
+      console.log(results)
+      results.map((result) => {
+        console.log(result)
+      })
+      // results.forEach(result => {
+      //   console.log(result)
+
+      // });
+      for (let i = 0; i < results.length; i++){
+        
+      }
+
+    } catch (error) {
+      console.error("検索できてません", error)
+
+    }
+  }
+
+  // InputMessageからお引越し
+
+
+	const insertMessages = async (e: any) => {
+		e.preventDefault();
+		try {
+			await supabase
+				.from("messages")
+				.insert({
+					"text": input,
+					"icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv5qgVuKR3wnGlBHRL64GbAU6sAnNHq-lAHw&usqp=CAU",
+					"channel": "realtime-channel",
+					"uid": userID,
+				});
+			console.log(userID);
+			setInput("");
+
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+
+
+	useEffect(() => {
+		// const { data } = supabase.auth.getUser()
+		// if (data.user !== null) {
+		// 	setUserID(data.user.id)
+		// }
+		const fetchUserID = async () => {
+			try {
+				const { data } = await supabase.auth.getUser();
+				// console.log(data.user.id)
+				setUserID(data.user.id)
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		fetchUserID();
+		console.log(userID)
+	}, []);
+
+
+
   return (
     <>
       <BrowserRouter>
@@ -82,8 +175,30 @@ function App() {
           />
 
           <Route path="/success" element={<Layout><SuccessPage user={user} /></Layout>} />
-          <Route path="/chatpage" element={<Layout isPhraseOpen={isPhraseOpen} phrases={phrases} handleOpenPhrases={handleOpenPhrases} ><ChatPage user={user}
-            handleOpenPhrases={ handleOpenPhrases} handleClosePhrases={handleClosePhrases} /></Layout>} />
+
+          {/* <useResultContext.Provider> */}
+          <Route path="/chatpage" element={<Layout
+            isPhraseOpen={isPhraseOpen}
+            phrases={phrases}
+            handleOpenPhrases={handleOpenPhrases}
+            handleSearchPhrases={handleSearchPhrases}
+            searchPhrases={searchPhrases}
+            results={results}
+            handleChangeSearchPhrases={handleChangeSearchPhrases}
+            // handleUsePhrase={handleUsePhrase}
+            input={input}
+            setInput={setInput}
+          ><ChatPage
+              user={user}
+              handleOpenPhrases={handleOpenPhrases}
+              handleClosePhrases={handleClosePhrases}
+              results={results}
+              insertMessages={insertMessages}
+              setInput={setInput}
+              input={input}
+              /></Layout>} />
+          {/* </useResultContext.Provider> */}
+
           <Route path="/profilepage" element={<Layout><ProfilePage /></Layout>} />
           <Route path="/phrase-index" element={<Layout><Index phrases={phrases} /></Layout>} />
           <Route path="/addphrases" element={<Layout><AddPhrases /></Layout>} />
