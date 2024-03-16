@@ -14,9 +14,10 @@ type Props = {
   results: string[];
   handleChangeSearchPhrases: (e: React.ChangeEvent<HTMLInputElement>) => void; // handleChangeSearchPhrases の型を追加
   handleUsePhrase: () => void;
+  setInput:() =>any,
 };
 
-const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,searchPhrases,results,handleChangeSearchPhrases,handleUsePhrase}): Props => {
+const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,searchPhrases,results,handleChangeSearchPhrases,setInput}): Props => {
   // const [searchPhrases, setSearchPhrases] = useState('');
   // const [results, setResults] = useState<any>([]);
   const navigate = useNavigate();
@@ -37,7 +38,15 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,
 
 
 
-  
+  function handleUsePhrase() {
+    console.log("useしたい")
+    console.log(results)
+    results.map((result) => {
+      console.log(result)
+    })
+
+  }
+
 
 
 
@@ -91,9 +100,7 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,
                                 size="xs"
                                 className='ml-auto bg-white'
                                 onClick={() => {
-                                  handleUsePhrase()
-                                  console.log("使いたいやつ",result.phrase)
-                                  
+                                  setInput(result.phrase)
                                 }}
                                 >USE</Button>
                               </div>
@@ -105,6 +112,7 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,
                               <Button size="xs"
                                 className='mr-2 ml-auto bg-white'
                                 onClick={() => {
+                                  console.log("clicked")
                                   const id = result.id
                                   console.log(id)
                                   navigate("/details", { state: { id } })

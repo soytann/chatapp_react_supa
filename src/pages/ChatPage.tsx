@@ -8,11 +8,14 @@ import SideBar from '../components/SideBar'
 
 type Props = {
   user: string,
-  handleOpenPhrases: any,
-  handleClosePhrases: any,
-  results:any,
+  handleOpenPhrases: () => void,
+  handleClosePhrases: () => void,
+  results: any,
+  insertMessages: () => void,
+  input: string,
+  setInput: (e) => any,
 }
-const ChatPage = ({ user, handleOpenPhrases, handleClosePhrases,results }: Props) => {
+const ChatPage = ({ user, handleOpenPhrases, handleClosePhrases,results,insertMessages,input,setInput}: Props) => {
   // const [displayPhrase, setDisplayPhrase] = useState("");
 
 
@@ -25,7 +28,7 @@ const ChatPage = ({ user, handleOpenPhrases, handleClosePhrases,results }: Props
       <SideBar/> */}
       <div className="my-20">
         <ChatBubbles user={user} handleClosePhrases={handleClosePhrases}></ChatBubbles>
-        <InputMessage handleOpenPhrases={handleOpenPhrases} results={results}></InputMessage>
+        <InputMessage handleOpenPhrases={handleOpenPhrases} results={results} insertMessages={insertMessages} input={input} setInput={setInput}></InputMessage>
       </div>
     </>
   )

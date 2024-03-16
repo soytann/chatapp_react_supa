@@ -13,6 +13,8 @@ type Props = {
   results: string[];
   handleChangeSearchPhrases: (e: React.ChangeEvent<HTMLInputElement>) => void; // handleChangeSearchPhrases の型を追加
   handleUsePhrase: any;
+  input: string,
+  setInput:()=>void,
 };
 
 const Layout = (props) => {
