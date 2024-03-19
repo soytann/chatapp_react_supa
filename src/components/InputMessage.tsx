@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Input } from 'react-daisyui'
+import { Input,Textarea} from 'react-daisyui'
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import TranslateRoundedIcon from '@mui/icons-material/TranslateRounded';
 // import { insertMessages } from '../../utils/supabaseFunctions';
 import { supabase } from '../../utils/createClient';
+import {translator} from "../../utils/deepl"
 
 type Props = {
 	handleOpenPhrases: ()=> void,
@@ -16,7 +18,7 @@ type Props = {
 const InputMessage = ({ handleOpenPhrases,insertMessages,setInput,input }: Props) => {
 	// const [input, setInput] = useState("");
 	// const [userID, setUserID] = useState("");
-
+  const [translatedText, setTranslatedText ] = useState<string>("")
 	// const insertMessages = async (e: any) => {
 	// 	e.preventDefault();
 	// 	try {
@@ -56,22 +58,42 @@ const InputMessage = ({ handleOpenPhrases,insertMessages,setInput,input }: Props
 	// 	console.log(userID)
 	// }, []);
 
+	function handleTranslate() {
+		try {
+			console.log(input)
+			translator(input)
+				.then(res => setInput(res.text))
+		} catch (error) {
+			console.log("翻訳エラーです")
+		}
+	}
+
+	console.log(input)
+	console.log(translatedText)
+
+
 	return (
 		<div>
-			<div className="flex lg p-4 gap-2 font-sans fixed bottom-0 items-center w-screen ">
+			<div className="flex lg p-4 gap-2 font-sans fixed bottom-0 items-center ">
 				<AddRoundedIcon
 					onClick={
 						handleOpenPhrases}
 					className='cursor-pointer' />
 				<form onSubmit={insertMessages}>
-					<Input
+					<Textarea
 						onChange={(e) => { setInput(e.target.value) }}
-						className='w-auto'
+						className='relative  h-16 w-full  md:w-96'
 						placeholder='message'
 						value={input} />
 					{console.log(input)}
 				</form>
-				<SendRoundedIcon onClick={insertMessages}></SendRoundedIcon>
+				<TranslateRoundedIcon
+					className='cursor-pointer'
+					onClick={handleTranslate} />
+				<SendRoundedIcon
+
+					className='cursor-pointer {input.length===0 ? disabled:enabled}'
+					onClick={insertMessages}></SendRoundedIcon>
 			</div>
 		</div>
 	)
