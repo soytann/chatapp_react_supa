@@ -4,6 +4,7 @@ import { Avatar, Collapse, Badge, Button } from 'react-daisyui';
 import PhraseCard from './PhraseCard';
 import { Input } from 'react-daisyui';
 import { useNavigate } from 'react-router-dom';
+import TranslateMessage from './TranslateMessage ';
 
 type Props = {
   handleOpenPhrases: (isOpen: boolean) => void; //書き直す
@@ -48,7 +49,17 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,
   }
 
 
-
+//   return (
+//     <>
+//           <div className='fixed'>
+//       <Sidebar>
+//         <div className='h-screen'>
+//           <TranslateMessage />
+//       </div>
+//     </Sidebar >
+//     </div>
+//     </>
+// )
 
   return (
 

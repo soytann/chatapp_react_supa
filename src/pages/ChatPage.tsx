@@ -26,7 +26,7 @@ const ChatPage = ({ user, handleOpenPhrases, handleClosePhrases,results,insertMe
         <Header />
       </div>
       <SideBar/> */}
-      <div className="my-20">
+      <div className="my-20 relative">
         <ChatBubbles user={user} handleClosePhrases={handleClosePhrases}></ChatBubbles>
         <InputMessage handleOpenPhrases={handleOpenPhrases} results={results} insertMessages={insertMessages} input={input} setInput={setInput}></InputMessage>
       </div>
