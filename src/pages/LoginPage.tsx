@@ -10,15 +10,15 @@ const LoginPage = () => {
 
     useEffect(() => {
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
-            console.log(event, session);
-            if (event === "SIGNED_IN" || "INITIAL_SESSION" ) {
+            console.log( event,session);
+            if (event === "SIGNED_IN" ) {
                 //to succeeded URL
                 navigate("/success");
-            } else if (event !== "SIGNED_IN") {
+            } else if (event === "SIGNED_OUT") {
                 //to LoginPage
                 navigate("/");
             }
-            // data.subscription.unsubscribe()
+            return data.subscription.unsubscribe()
         });
 
     }, []);

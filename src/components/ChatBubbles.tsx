@@ -115,6 +115,8 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 						<ContextMenu points={points} />
 					// </div>
 				)}
+				    <div style={{ maxHeight: '70%', overflowY: 'scroll' }}>
+
 				{messages.map((message) => (
 					<div key={message.id}>
 						{console.log(user.id)}
@@ -169,7 +171,8 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 						}
 					</div>
 				))}
-			</div>
+				</div>
+				</div>
 		</>
 	)
 }

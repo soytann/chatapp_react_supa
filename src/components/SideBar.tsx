@@ -74,7 +74,7 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,
             <Menu>
               <div className='A'>
                 <SubMenu label="Friends">
-                  <MenuItem> Pie charts </MenuItem>
+                  <MenuItem> Add Friends</MenuItem>
                   <MenuItem> Line charts </MenuItem>
                 </SubMenu>
                 <form action=""

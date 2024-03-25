@@ -27,7 +27,7 @@ const Layout = (props) => {
 
       <div className='flex ml-[250px]'>
         <Header />
-        <main className='w-full'>
+        <main className='w-full my-20 px-2'>
           {props.children}
         </main>
       </div>

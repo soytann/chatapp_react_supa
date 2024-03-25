@@ -7,10 +7,10 @@ import { Button } from "@material-tailwind/react";
 import Layout from "../components/Layout";
 
 type Props = {
-  user:string,
+	user: string,
 }
 
-const SuccessPage = ({user}:Props) => {
+const SuccessPage = ({ user }: Props) => {
 
 	const navigate = useNavigate();
 
@@ -23,26 +23,30 @@ const SuccessPage = ({user}:Props) => {
 	return (
 
 
-			<div>
-				{console.log(user.id)}
-				{/* userオブジェクトがあるかどうかチェック */}
-				{Object.keys(user).length !== 0 ?
-					<>
-						<div>
-							<h1>you're logged in</h1>
-							<Button onClick={()=>{navigate("/chatpage")}} >chatへ </Button>
-							<Button onClick={logOutUser} >logout </Button>
-						</div>
-					</>
-					:
-					<>
-						<div>
-							<h1>User is not logged in</h1>
-							{/* <Button onClick={() => { navigate("/") }} >Go back home </Button> */}
-						</div>
-					</>
-				}
-			</div>
+		<div>
+			{console.log(user.id)}
+			{/* userオブジェクトがあるかどうかチェック */}
+			{Object.keys(user).length !== 0 ?
+				<>
+					<div >
+						<h1>you're logged in</h1>
+						<Button
+							className="m-1"
+							onClick={() => { navigate("/chatpage") }} >chat </Button>
+						<Button
+							className="m-1"
+							onClick={logOutUser} >logout </Button>
+					</div>
+				</>
+				:
+				<>
+					<div>
+						<h1>User is not logged in</h1>
+						{/* <Button onClick={() => { navigate("/") }} >Go back home </Button> */}
+					</div>
+				</>
+			}
+		</div>
 
 	)
 }
