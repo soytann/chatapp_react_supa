@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "utils/createClient.tsx"],
+  "include": ["src", "utils/createClient.tsx", "src/hooks/useMessage.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

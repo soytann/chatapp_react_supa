@@ -4,7 +4,9 @@ import { Avatar } from 'react-daisyui';
 import PhraseCard from './PhraseCard';
 import { Search } from '@mui/icons-material';
 import { Input } from 'react-daisyui';
-import { searchedPhrases } from '../../utils/supabaseFunctions';
+import { useNavigate } from 'react-router-dom';
+import TranslateMessage from './TranslateMessage ';
+
 
 type Props = {
   handleOpenPhrases: (isOpen: boolean) => void; //書き直す
@@ -49,7 +51,17 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,
   }
 
 
-
+//   return (
+//     <>
+//           <div className='fixed'>
+//       <Sidebar>
+//         <div className='h-screen'>
+//           <TranslateMessage />
+//       </div>
+//     </Sidebar >
+//     </div>
+//     </>
+// )
 
   async function handleSearchPhrases(e) {
     e.preventDefault();

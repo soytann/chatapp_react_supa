@@ -82,7 +82,7 @@ const InputMessage = ({ handleOpenPhrases,insertMessages,setInput,input }: Props
 				<form onSubmit={insertMessages}>
 					<Textarea
 						onChange={(e) => { setInput(e.target.value) }}
-						className='relative  h-16 w-full  md:w-96'
+						className='resize-none relative  h-16 w-full sm:w-64  md:w-96'
 						placeholder='message'
 						value={input} />
 					{console.log(input)}
