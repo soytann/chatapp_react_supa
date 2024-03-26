@@ -64,11 +64,11 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,
   return (
 
 
-    <div className='fixed'>
+    <div className='fixed ml-12 w-[230px] px-0'>
       <Sidebar>
-        <div className='h-screen'>
-          {console.log(isPhraseOpen)}
-          {console.log(phrases)}
+        <div className='h-screen '>
+          {/* {console.log(isPhraseOpen)}
+          {console.log(phrases)} */}
           {isPhraseOpen ?
 
             <Menu>
@@ -89,7 +89,7 @@ const SideBar = ({ isPhraseOpen, phrases, handleOpenPhrases,handleSearchPhrases,
                   </div>
                 </form>
               </div>
-              <div className=' w-[242px] h-full fixed top-[88px] overflow-y-scroll mx-1 pb-32 text-md'>
+              <div className=' w-[230px] h-full fixed top-[88px] overflow-y-scroll mx-2 pb-32 text-md'>
 
                 {/* <PhraseCard phrases={phrases} /> */}
 

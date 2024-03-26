@@ -74,7 +74,7 @@ const InputMessage = ({ handleOpenPhrases,insertMessages,setInput,input }: Props
 
 	return (
 		<div>
-			<div className="flex lg p-4 gap-2 font-sans fixed bottom-0 items-center ">
+			<div className="flex bg-white lg p-2 gap-2 font-sans fixed bottom-0 items-center ">
 				<AddRoundedIcon
 					onClick={
 						handleOpenPhrases}

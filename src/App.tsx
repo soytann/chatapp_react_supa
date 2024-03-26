@@ -16,7 +16,7 @@ import DetailPage from "./pages/phrase/DetailPage";
 import { getPhrases } from './../utils/supabaseFunctions'
 import Layout from "./components/Layout";
 import { fetchSearchedPhrases } from "../utils/supabaseFunctions";
-
+import Profile from "./components/Profile";
 
 
 function App() {
@@ -198,6 +198,8 @@ function App() {
           <Route path="/phrase-index" element={<Layout><Index phrases={phrases} /></Layout>} />
           <Route path="/addphrases" element={<Layout><AddPhrases /></Layout>} />
           <Route path="/details" element={<Layout><DetailPage phrases={phrases} /></Layout>} />
+          <Route path="/profile" element={<Layout><Profile user={user} /></Layout>} />
+          {/* <Route path="/details" element={<Layout><DetailPage phrases={phrases} /></Layout>} /> */}
 
         </Routes>
       </BrowserRouter>

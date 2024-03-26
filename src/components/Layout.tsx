@@ -1,6 +1,7 @@
 import React,{ ReactNode } from 'react'
 import Header from './Header';
 import SideBar from "./SideBar"
+import IconMenu from './IconMenu';
 
 
 type Props = {
@@ -20,12 +21,16 @@ type Props = {
 const Layout = (props) => {
   // console.log(children)
   return (
+
     <div className='layout'>
+
+        <IconMenu />
+
       <SideBar
         {...props}
       />
 
-      <div className='flex ml-[250px]'>
+      <div className='flex ml-[290px] px-2'>
         <Header />
         <main className='w-full my-20 px-2'>
           {props.children}

@@ -2,7 +2,9 @@ import { useState } from "react";
 import { supabase } from "../utils/createClient";
 
 export const getAllUsers = async () => {
-	const users = await supabase.from("users").select("*");
+	const users = await supabase
+		.from("users")
+		.select("*");
 	return users.data;
 };
 

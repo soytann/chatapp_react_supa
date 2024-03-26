@@ -13,7 +13,7 @@ const ContextMenu = ({ points }) => {
   return (
     <>
       <div
-        style={{ top: points.y-70, left:points.x-250}}
+        style={{ top: points.y-70, left:points.x-300}}
         className= "absolute z-10 opacity-90"
       >
 
