@@ -1,6 +1,6 @@
 import "./App.css";
 import { supabase } from "../utils/createClient";
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllUsers } from "../utils/supabaseFunctions"
 import LoginPage from "./pages/LoginPage";
 import SuccessPage from "./pages/SuccessPage";
@@ -19,16 +19,19 @@ import { fetchSearchedPhrases } from "../utils/supabaseFunctions";
 import Profile from "./components/Profile";
 
 
+
 function App() {
   const [users, setUsers] = useState<any>([]);
   const [user, setUser] = useState({});
   const [phrases, setPhrases] = useState<any>([]); //PhraseCardからお引越し
   const [isPhraseOpen, setIsPhraseOpen] = useState(false);
+
   // const useResultContext = createContext();
   const [searchPhrases, setSearchPhrases] = useState(''); //sidebar
   const [results, setResults] = useState<any>([]); //sidebar
   const [input, setInput] = useState("");
 	const [userID, setUserID] = useState("");
+
 
 
   useEffect(() => {
@@ -71,14 +74,15 @@ function App() {
     console.log("phraseできてます", phrases)
   }, []);
 
-  //SideBarフレーず表示
-  function handleOpenPhrases() {
+
+  function handleOpenPhrases(){
     setIsPhraseOpen(true);
     console.log(isPhraseOpen)
   }
-  function handleClosePhrases() {
+  function handleClosePhrases(){
     setIsPhraseOpen(false)
   }
+
 
   //SideBarからお引越し、resultsをuseContextでグローバル管理
   function handleChangeSearchPhrases(e) {
@@ -163,6 +167,7 @@ function App() {
 	}, []);
 
 
+
   return (
     <>
       <BrowserRouter>
@@ -172,6 +177,7 @@ function App() {
           />
 
           <Route path="/success" element={<Layout><SuccessPage user={user} /></Layout>} />
+
           {/* <useResultContext.Provider> */}
           <Route path="/chatpage" element={<Layout
             isPhraseOpen={isPhraseOpen}
@@ -194,6 +200,7 @@ function App() {
               input={input}
               /></Layout>} />
           {/* </useResultContext.Provider> */}
+
           <Route path="/profilepage" element={<Layout><ProfilePage /></Layout>} />
           <Route path="/phrase-index" element={<Layout><Index phrases={phrases} /></Layout>} />
           <Route path="/addphrases" element={<Layout><AddPhrases /></Layout>} />

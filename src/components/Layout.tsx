@@ -9,6 +9,7 @@ type Props = {
   handleOpenPhrases: (isOpen: boolean) => void; //書き直す
   isPhraseOpen: any //書き直す
   phrases: string,
+
   handleSearchPhrases: (e: React.FormEvent<HTMLFormElement>) => void; // handleSearchPhrases の型を追加
   searchPhrases: string;
   results: string[];
@@ -16,13 +17,15 @@ type Props = {
   handleUsePhrase: any;
   input: string,
   setInput:()=>void,
+
 };
 
-const Layout = (props) => {
+const Layout = (props: Props) => {
   // console.log(children)
   return (
 
     <div className='layout'>
+
 
         <IconMenu />
 
@@ -30,10 +33,12 @@ const Layout = (props) => {
         {...props}
       />
 
+
       <div className='flex ml-[290px] px-2'>
         <Header />
         <main className='w-full my-20 px-2'>
           {props.children}
+
         </main>
       </div>
     </div>

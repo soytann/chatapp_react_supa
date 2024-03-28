@@ -48,6 +48,7 @@ const SuccessPage = ({ user }: Props) => {
 			}
 		</div>
 
+
 	)
 }
 

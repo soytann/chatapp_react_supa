@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ChatBubbles from '../components/ChatBubbles'
 import InputMessage from '../components/InputMessage'
 import ChatHeader from '../components/ChatHeader'
@@ -19,6 +19,7 @@ const ChatPage = ({ user, handleOpenPhrases, handleClosePhrases,results,insertMe
   // const [displayPhrase, setDisplayPhrase] = useState("");
 
 
+
   return (
     <>
       
@@ -28,7 +29,9 @@ const ChatPage = ({ user, handleOpenPhrases, handleClosePhrases,results,insertMe
       <SideBar/> */}
       <div className=" relative">
         <ChatBubbles user={user} handleClosePhrases={handleClosePhrases}></ChatBubbles>
+
         <InputMessage handleOpenPhrases={handleOpenPhrases} results={results} insertMessages={insertMessages} input={input} setInput={setInput}></InputMessage>
+
       </div>
     </>
   )
