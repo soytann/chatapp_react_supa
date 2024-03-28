@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { Collapse } from 'react-daisyui'
+import { Collapse,Button } from 'react-daisyui'
 import { getSelectedPhrases } from '../../utils/supabaseFunctions'
 import { Cottage } from '@mui/icons-material'
 import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { supabase } from '../../utils/createClient'
+import { getPhrases } from '../../utils/supabaseFunctions'
 
-const PhraseDetails = ({ phrases }) => {
+const PhraseDetails = ({ phrases,setPhrases }) => {
   const [selectedPhrase, setSelectedPhrase] = useState<any>([]);
   const location = useLocation();
   console.log(location);
   let phraseID = location.state.id
-
+  const navigate = useNavigate();
   console.log(phraseID)
 
 
@@ -30,12 +33,47 @@ const PhraseDetails = ({ phrases }) => {
 
   }, []);
 
+  function handleDeletePhrase() {
+    supabase
+      .from("phrases")
+      .delete()
+      .eq("id", phraseID)
+      .then((res) => {
+        console.log(res)
+        confirm("このフレーズを削除します");
+        setPhrases(res);
+
+        navigate("/phrase-index", {state:phrases});
+      })
+      .catch((error) => {
+      console.error("Error deleting phrase",error)
+    })
+    
+  }
+  function handleUpdatePhrase() {
+    supabase
+      .from("phrases")
+      .update({phrase:phrase})
+      .eq("id", phraseID)
+      .then((res) => {
+        console.log(res)
+        confirm("このフレーズを削除します");
+        setPhrases(res);
+
+        navigate("/phrase-index", {state:phrases});
+      })
+      .catch((error) => {
+      console.error("Error deleting phrase",error)
+    })
+    
+  }
+
   return (
     <>
       <div>
         <div className='mt-20 py-2 px-4 bg-gray-100 h-[684px] rounded-xl mx-6 ' >
           {selectedPhrase.map((selected) => (
-            <>
+            <div key={phraseID}>
               <div>
                 <p className='font-bold py-2 my-0'>Phrase</p>
                 <div className='bg-white bg-opacity-80 p-4 h-auto shadow rounded-lg'>
@@ -71,9 +109,18 @@ const PhraseDetails = ({ phrases }) => {
                 <div className='bg-white bg-opacity-80 p-4 h-auto shadow rounded-lg'>
                   <p className='font-semibold'>{ selected.history}</p>
                 </div>
-              </div>f
-            </>
+              </div>
+            </div>
           ))}
+          <div
+            onClick={handleUpdatePhrase}
+            className='flex gap-2 my-20 text-justify'>
+          <Button className='bg-blue-200' >Edit</Button>
+            <Button
+              onClick={handleDeletePhrase}
+              className='bg-red-200'>Delete</Button>
+          </div>
+
         </div>
       </div>
 

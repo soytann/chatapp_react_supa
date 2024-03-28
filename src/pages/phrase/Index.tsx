@@ -17,7 +17,7 @@ const Index = ({ phrases }) => {
           onClick={() => { navigate("/addphrases") }}
           className='fixed right-2 top-20' size='sm' color='primary'>Add</Button>
 
-      <div className='fixed w-full h-screen top-32 overflow-auto px-1 pb-32 text-xl'>
+      <div className='fixed  h-screen top-32 overflow-auto px-1 pb-32 text-xl'>
         <PhraseCard
           phrases={phrases} />
       </div>

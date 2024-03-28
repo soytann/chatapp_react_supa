@@ -92,25 +92,7 @@ import { Link } from 'react-router-dom';
         </Collapse.Content>
       </Collapse>
 
-      <div className='py-1'>
-        <Collapse className="group" checkbox>
-          <Collapse.Title className="bg-gray-100 peer-checked:bg-blue-200 peer-checked:text-secondary-content">
-            <div className='text-xs'>カテゴリー:
-              <span>
-                <Badge color="natural">
-                  No Category
-                </Badge>
-              </span></div>
-            <p className='font-bold '>whatchamacallit</p>
-          </Collapse.Title>
-          <Collapse.Content className="bg-primary text-primary-content peer-checked:bg-blue-200 peer-checked:text-secondary-content">
-            <div className='flex gap-4'>
-              <p>なんて言うんだっけ？</p>
-              <Button size="sm" className='mr-5 ml-auto bg-white'>DETAILS</Button>
-            </div>
-          </Collapse.Content>
-        </Collapse>
-      </div>
+
 
 
 

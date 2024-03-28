@@ -197,7 +197,7 @@ function App() {
           <Route path="/profilepage" element={<Layout><ProfilePage /></Layout>} />
           <Route path="/phrase-index" element={<Layout><Index phrases={phrases} /></Layout>} />
           <Route path="/addphrases" element={<Layout><AddPhrases /></Layout>} />
-          <Route path="/details" element={<Layout><DetailPage phrases={phrases} /></Layout>} />
+          <Route path="/details" element={<Layout><DetailPage phrases={phrases} setPhrases={ setPhrases} /></Layout>} />
           <Route path="/profile" element={<Layout><Profile user={user} /></Layout>} />
           {/* <Route path="/details" element={<Layout><DetailPage phrases={phrases} /></Layout>} /> */}
 
