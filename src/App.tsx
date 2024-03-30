@@ -34,14 +34,14 @@ function App() {
 
 
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const users = await getAllUsers()
-      setUsers(users);
-      console.log(users);
-    }
-    getUsers();
-  }, [])
+  // useEffect(() => {
+  //   const getUsers = async () => {
+  //     const users = await getAllUsers()
+  //     setUsers(users);
+  //     console.log(users);
+  //   }
+  //   getUsers();
+  // }, [])
 
   // メールからリンクに飛んだor最初のrender時に一回実行
   useEffect(() => {
