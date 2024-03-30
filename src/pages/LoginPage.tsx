@@ -7,6 +7,7 @@ import { Button } from "@material-tailwind/react";
 
 const LoginPage = () => {
     const navigate = useNavigate();
+    
 
     useEffect(() => {
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
@@ -19,9 +20,13 @@ const LoginPage = () => {
                 navigate("/");
             }
             return data.subscription.unsubscribe()
+            
+
         });
 
     }, []);
+
+
 
     return (
         <>

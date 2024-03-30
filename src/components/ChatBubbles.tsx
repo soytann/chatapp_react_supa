@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { ChatBubble, } from 'react-daisyui'
 // import { supabase } from '../../utils/createClient'
 import { getMessages, } from '../../utils/supabaseFunctions'
@@ -21,7 +21,7 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 		x: 0,
 		y: 0,
 	})
-
+	const endRef = useRef();
 
 	// ----この書き方は、promiseオブジェクト（pending)で返ってくる------
 	// useEffect(() => {
@@ -92,6 +92,7 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 		console.log(message.text)
 		translator(message.text)
 			.then(res => setTranslatedText(res.text))
+		
 
 	}
 	console.log(translatedText)
@@ -104,6 +105,15 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 			window.removeEventListener("click", handleClick);
 		};
 	}, []);
+
+	useEffect(() => {
+		// refがnullの時はスキップ
+		if (endRef.current) {
+			endRef.current.scrollIntoView();
+				
+		}
+}, [messages]);
+
 	return (
 		<>
 			<div className=''
@@ -172,6 +182,7 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 					</div>
 				))}
 				</div>
+				<div ref={endRef}></div>
 				</div>
 		</>
 	)

@@ -51,6 +51,7 @@ const Profile = ({ user }) => {
 
   const handleSubmitProfile = async (e: any) => {
     e.preventDefault();
+    if(Object.keys == 0){
     try {
       await supabase
         .from("profiles")
@@ -69,6 +70,7 @@ const Profile = ({ user }) => {
     } catch (error) {
       console.error("profileエラー",error);
     }
+  }
   }
 
   return (

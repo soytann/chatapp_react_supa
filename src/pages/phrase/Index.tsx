@@ -8,14 +8,15 @@ const Index = ({ phrases }) => {
   const navigate = useNavigate();
   return (
     <div>
-        <div className=' mt-[80px] ml-8 w-full max-w-xs '>
+        <div className=' ml-8 w-full max-w-xs flex justify-between '>
         <Input
           size='sm'
             placeholder='Search Phrases' />
-        </div>
+       
         <Button
           onClick={() => { navigate("/addphrases") }}
-          className='fixed right-2 top-20' size='sm' color='primary'>Add</Button>
+          className='' size='sm' color='primary'>Add Phrase</Button>
+         </div>
 
       <div className='fixed  h-screen top-32 overflow-auto px-1 pb-32 text-xl'>
         <PhraseCard
