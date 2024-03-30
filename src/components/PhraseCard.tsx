@@ -44,7 +44,7 @@ import { Link } from 'react-router-dom';
           </div>
         ))}
       </div>
-      <div className='pt-1'>
+      {/* <div className='pt-1'>
       <Collapse checkbox>
         <Collapse.Title className="bg-gray-100 text-xl font-medium" >
           <Badge color="primary">
@@ -59,7 +59,7 @@ import { Link } from 'react-router-dom';
           </div>
         </Collapse.Content>
       </Collapse>
-</div>
+</div> */}
         
       <div className='py-1'>
         <Collapse checkbox>
