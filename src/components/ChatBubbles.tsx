@@ -137,8 +137,8 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 										e.preventDefault();
 										setClicked(true);
 										setPoints({
-											x: e.clientX,
-											y: e.clientY,
+											x: e.pageX,
+											y: e.pageY,
 										})
 										console.log("コンテキストメニュー", points.x, points.y)
 										console.log(e)
@@ -152,9 +152,17 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 								<ChatBubble.Avatar src={message.icon} />
 								<div className='flex'>
 									<ChatBubble.Message
-										onMouseOver={
-											handleDisplayMenu
-										}>
+										onMouseOver={handleDisplayMenu}
+										onContextMenu={(e) => {
+											e.preventDefault();
+											setClicked(true);
+											setPoints({
+												x: e.pageX,
+												y: e.pageY,
+											})
+											console.log("コンテキストメニュー", points.x, points.y)
+											console.log(e)
+										}}>
 										{message.text}
 										{/* <ChatBubble.Footer className='text-xs'>{message.uid}</ChatBubble.Footer> */}
 									</ChatBubble.Message>

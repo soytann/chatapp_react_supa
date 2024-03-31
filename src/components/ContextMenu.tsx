@@ -2,8 +2,10 @@ import React from 'react'
 import { Menu } from 'react-daisyui'
 import { TranslateRounded } from '@mui/icons-material'
 import { DeleteForeverRounded } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
 const ContextMenu = ({ points }) => {
+  const navigate = useNavigate();
 
   // function contextMenu(e: React.MouseEvent<HTMLElement>) {
   //   e.preventDefault();
@@ -20,7 +22,8 @@ const ContextMenu = ({ points }) => {
       <Menu size="sm"
         className='bg-gray-200 p-0 rounded-md'>
         <Menu.Item >
-          <a>翻訳</a>
+            <a
+              onClick={navigate("/translate")}>翻訳</a>
         </Menu.Item>
         <Menu.Item>
           <a >削除</a>

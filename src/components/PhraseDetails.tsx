@@ -34,20 +34,21 @@ const PhraseDetails = ({ phrases,setPhrases }) => {
   }, []);
 
   function handleDeletePhrase() {
-    supabase
-      .from("phrases")
-      .delete()
-      .eq("id", phraseID)
-      .then((res) => {
-        console.log(res)
-        confirm("このフレーズを削除します");
-        setPhrases(res);
-
-        navigate("/phrase-index", {state:phrases});
-      })
-      .catch((error) => {
-      console.error("Error deleting phrase",error)
-    })
+    try {
+      supabase
+        .from("phrases")
+        .delete()
+        .eq("id", phraseID)
+        .then((res) => {
+          console.log(res)
+          confirm("このフレーズを削除します");
+          navigate("/phrase-index");
+        })
+    } catch {
+      (error) => {
+        console.error("Error deleting phrase", error)
+      }
+    }
     
   }
   function handleUpdatePhrase() {

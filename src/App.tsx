@@ -17,6 +17,7 @@ import { getPhrases } from './../utils/supabaseFunctions'
 import Layout from "./components/Layout";
 import { fetchSearchedPhrases } from "../utils/supabaseFunctions";
 import Profile from "./components/Profile";
+import TranslateMessage from "./components/TranslateMessage ";
 
 
 
@@ -72,7 +73,7 @@ function App() {
     })();
 
     console.log("phraseできてます", phrases)
-  }, []);
+  }, [phrases]);
 
 
   function handleOpenPhrases(){
@@ -134,7 +135,7 @@ function App() {
 				.from("messages")
 				.insert({
 					"text": input,
-					"icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv5qgVuKR3wnGlBHRL64GbAU6sAnNHq-lAHw&usqp=CAU",
+					"icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrTHHaN-Lx3wi7rL5u2Bwg-NVf7opArrYBfD4reWe_GvQb64kVqTRDWnxw6rO7L6xkEfY&usqp=CAU",
 					"channel": "realtime-channel",
 					"uid": userID,
 				});
@@ -202,11 +203,11 @@ function App() {
           {/* </useResultContext.Provider> */}
 
           <Route path="/profilepage" element={<Layout><ProfilePage /></Layout>} />
-          <Route path="/phrase-index" element={<Layout><Index phrases={phrases} /></Layout>} />
+          <Route path="/phrase-index" element={<Layout><Index phrases={phrases} searchPhrases={searchPhrases} handleChangeSearchPhrases={handleChangeSearchPhrases} results={results} /></Layout>} />
           <Route path="/addphrases" element={<Layout><AddPhrases /></Layout>} />
           <Route path="/details" element={<Layout><DetailPage phrases={phrases} setPhrases={ setPhrases} /></Layout>} />
           <Route path="/profile" element={<Layout><Profile user={user} /></Layout>} />
-          {/* <Route path="/details" element={<Layout><DetailPage phrases={phrases} /></Layout>} /> */}
+          <Route path="/translate" element={<Layout><TranslateMessage phrases={phrases} /></Layout>} />
 
         </Routes>
       </BrowserRouter>
