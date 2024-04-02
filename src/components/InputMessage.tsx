@@ -68,8 +68,8 @@ const InputMessage = ({ handleOpenPhrases,insertMessages,setInput,input }: Props
 		}
 	}
 
-	console.log(input)
-	console.log(translatedText)
+	// console.log(input)
+	// console.log(translatedText)
 
 
 	return (
@@ -85,7 +85,7 @@ const InputMessage = ({ handleOpenPhrases,insertMessages,setInput,input }: Props
 						className='resize-none relative  h-16 w-full sm:w-64  md:w-96'
 						placeholder='message'
 						value={input} />
-					{console.log(input)}
+					{/* {console.log(input)} */}
 				</form>
 				<TranslateRoundedIcon
 					className='cursor-pointer'

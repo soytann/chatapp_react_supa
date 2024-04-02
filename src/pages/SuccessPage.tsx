@@ -24,7 +24,7 @@ const SuccessPage = ({ user }: Props) => {
 
 
 		<div>
-			{console.log(user.id)}
+			{/* {console.log(user.id)} */}
 			{/* userオブジェクトがあるかどうかチェック */}
 			{Object.keys(user).length !== 0 ?
 				<>
