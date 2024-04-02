@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { ChatBubble, } from 'react-daisyui'
 // import { supabase } from '../../utils/createClient'
 import { getMessages, } from '../../utils/supabaseFunctions'
@@ -71,7 +71,7 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 
 
 
-	useEffect(() => {
+	const callbackMessage = useCallback(() => {
 		(async () => {
 			try {
 				const fetchedMessages = await getMessages();
@@ -81,8 +81,11 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 			};
 		})();
 		getRealtimeMessages();
-		console.log("リアルタイムできてます")
-	}, []);
+	},[]);
+
+	useEffect(() => {
+		callbackMessage();
+	},[messages])
 
 	function handleDisplayMenu() {
 
@@ -95,7 +98,6 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 		
 
 	}
-	console.log(translatedText)
 
 	useEffect(() => {
 		const handleClick = () => setClicked(false);
@@ -129,7 +131,6 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 
 				{messages.map((message) => (
 					<div key={message.id}>
-						{console.log(user.id)}
 						{user.id === message.uid ?
 							<ChatBubble end>
 								<ChatBubble.Message

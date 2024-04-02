@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PhraseCard from '../../components/PhraseCard'
 import Header from '../../components/Header'
 import { Button } from 'react-daisyui'
@@ -6,10 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { Input } from 'react-daisyui';
 
 
-const Index = ({ phrases,searchPhrases,handleChangeSearchPhrases,results }) => {
+const Index = ({ phrases,setPhrases,searchPhrases,handleChangeSearchPhrases,results }) => {
   const navigate = useNavigate();
+
+
   return (
     
+
+
     <div>
         <div className=' ml-8 w-full max-w-xs flex justify-between '>
         <Input

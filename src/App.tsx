@@ -1,6 +1,6 @@
 import "./App.css";
 import { supabase } from "../utils/createClient";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getAllUsers } from "../utils/supabaseFunctions"
 import LoginPage from "./pages/LoginPage";
 import SuccessPage from "./pages/SuccessPage";
@@ -50,7 +50,7 @@ function App() {
     async function getUserData() {
       await supabase.auth.getUser()
         .then((data) => {
-          console.log("GETユーザー：", data)
+          // console.log("GETユーザー：", data)
           //そもそもdata.dataがundifinedであったら、usegetすらするな、useプロパティがあるなら、setしてくれ
           if (data.data?.user) {
             setUser(data.data.user);
@@ -58,23 +58,26 @@ function App() {
         })
     }
     getUserData();
-    console.log(user)
+    // console.log(user)
   }, []);
 
   //PhraseCardからお引越し
-  useEffect(() => {
+  const phraseRender = useCallback(() => {
     (async () => {
       try {
         const fetchedPhrases = await getPhrases();
-        setPhrases(fetchedPhrases);
+        if (JSON.stringify(fetchedPhrases) !== JSON.stringify(phrases)) {
+          setPhrases(fetchedPhrases);
+        }
       } catch (error) {
         console.error("フレーズ取れてないよ", error);
       };
     })();
+  }, []);
 
-    console.log("phraseできてます", phrases)
-  }, [phrases]);
-
+  useEffect(() => {
+    phraseRender();
+  },[phrases])
 
   function handleOpenPhrases(){
     setIsPhraseOpen(true);
@@ -104,12 +107,12 @@ function App() {
     e.preventDefault();
     try {
       handleOpenPhrases(true);
-      console.log(searchPhrases)
+      // console.log(searchPhrases)
       const searchedResults = await fetchSearchedPhrases(searchPhrases)
       setResults(searchedResults);
-      console.log(results)
+      // console.log(results)
       results.map((result) => {
-        console.log(result)
+        // console.log(result)
       })
       // results.forEach(result => {
       //   console.log(result)
@@ -139,7 +142,7 @@ function App() {
 					"channel": "realtime-channel",
 					"uid": userID,
 				});
-			console.log(userID);
+			// console.log(userID);
 			setInput("");
 
 		} catch (error) {
@@ -164,7 +167,7 @@ function App() {
 			}
 		};
 		fetchUserID();
-		console.log(userID)
+		// console.log(userID)
 	}, []);
 
 
@@ -203,7 +206,7 @@ function App() {
           {/* </useResultContext.Provider> */}
 
           <Route path="/profilepage" element={<Layout><ProfilePage /></Layout>} />
-          <Route path="/phrase-index" element={<Layout><Index phrases={phrases} searchPhrases={searchPhrases} handleChangeSearchPhrases={handleChangeSearchPhrases} results={results} /></Layout>} />
+          <Route path="/phrase-index" element={<Layout><Index phrases={phrases} setPhrases={setPhrases} searchPhrases={searchPhrases} handleChangeSearchPhrases={handleChangeSearchPhrases} results={results} /></Layout>} />
           <Route path="/addphrases" element={<Layout><AddPhrases /></Layout>} />
           <Route path="/details" element={<Layout><DetailPage phrases={phrases} setPhrases={ setPhrases} /></Layout>} />
           <Route path="/profile" element={<Layout><Profile user={user} /></Layout>} />
