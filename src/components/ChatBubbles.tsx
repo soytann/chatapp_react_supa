@@ -75,17 +75,18 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 		(async () => {
 			try {
 				const fetchedMessages = await getMessages();
+
 				setMessages(fetchedMessages);
 			} catch (error) {
 				console.error("errorrrだよ", error);
 			};
 		})();
 		getRealtimeMessages();
-	},[]);
+	}, [messages]);
 
-	useEffect(() => {
-		callbackMessage();
-	},[messages])
+useEffect(()=>{
+	callbackMessage()
+},[callbackMessage])
 
 	function handleDisplayMenu() {
 
@@ -95,7 +96,7 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 		console.log(message.text)
 		translator(message.text)
 			.then(res => setTranslatedText(res.text))
-		
+
 
 	}
 
@@ -112,9 +113,8 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 		// refがnullの時はスキップ
 		if (endRef.current) {
 			endRef.current.scrollIntoView();
-				
 		}
-}, [messages]);
+	});
 
 	return (
 		<>
@@ -124,36 +124,16 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 					// <div
 					// 	// className={`absolute top-[${points.y}px] left-[${points.x}px] z-10 opacity-90`}
 					// >
-						<ContextMenu points={points} />
+					<ContextMenu points={points} />
 					// </div>
 				)}
-				    <div style={{ maxHeight: '70%', overflowY: 'scroll' }}>
+				<div style={{ maxHeight: '70%', overflowY: 'scroll' }}>
 
-				{messages.map((message) => (
-					<div key={message.id}>
-						{user.id === message.uid ?
-							<ChatBubble end>
-								<ChatBubble.Message
-									onContextMenu={(e) => {
-										e.preventDefault();
-										setClicked(true);
-										setPoints({
-											x: e.pageX,
-											y: e.pageY,
-										})
-										console.log("コンテキストメニュー", points.x, points.y)
-										console.log(e)
-									}}>
-									{message.text}
-								</ChatBubble.Message>
-								<ChatBubble.Footer> {message.created_at.slice(11, 16)} </ChatBubble.Footer>
-							</ChatBubble>
-							:
-							<ChatBubble>
-								<ChatBubble.Avatar src={message.icon} />
-								<div className='flex'>
+					{messages.map((message) => (
+						<div key={message.id}>
+							{user.id === message.uid ?
+								<ChatBubble end>
 									<ChatBubble.Message
-										onMouseOver={handleDisplayMenu}
 										onContextMenu={(e) => {
 											e.preventDefault();
 											setClicked(true);
@@ -165,34 +145,54 @@ const ChatBubbles = ({ user, handleClosePhrases }: Props) => {
 											console.log(e)
 										}}>
 										{message.text}
-										{/* <ChatBubble.Footer className='text-xs'>{message.uid}</ChatBubble.Footer> */}
 									</ChatBubble.Message>
+									<ChatBubble.Footer> {message.created_at.slice(11, 16)} </ChatBubble.Footer>
+								</ChatBubble>
+								:
+								<ChatBubble>
+									<ChatBubble.Avatar src={message.icon} />
+									<div className='flex'>
+										<ChatBubble.Message
+											onMouseOver={handleDisplayMenu}
+											onContextMenu={(e) => {
+												e.preventDefault();
+												setClicked(true);
+												setPoints({
+													x: e.pageX,
+													y: e.pageY,
+												})
+												console.log("コンテキストメニュー", points.x, points.y)
+												console.log(e)
+											}}>
+											{message.text}
+											{/* <ChatBubble.Footer className='text-xs'>{message.uid}</ChatBubble.Footer> */}
+										</ChatBubble.Message>
 
-									<div className=''>
-										<TranslateRounded
-											fontSize=""
-											className=''
-											onClick={() => {
-												console.log(message)
-												handleTranslate(message)
-											}}
-											key={message.id}
-											state={message.text}
-										/>
+										<div className=''>
+											<TranslateRounded
+												fontSize=""
+												className=''
+												onClick={() => {
+													console.log(message)
+													handleTranslate(message)
+												}}
+												key={message.id}
+												state={message.text}
+											/>
+										</div>
 									</div>
-								</div>
-								<ChatBubble.Footer className='text-xs'>{message.created_at.slice(11, 16)}</ChatBubble.Footer>
+									<ChatBubble.Footer className='text-xs'>{message.created_at.slice(11, 16)}</ChatBubble.Footer>
 
 
-							</ChatBubble>
+								</ChatBubble>
 
 
-						}
-					</div>
-				))}
+							}
+						</div>
+					))}
 				</div>
 				<div ref={endRef}></div>
-				</div>
+			</div>
 		</>
 	)
 }
