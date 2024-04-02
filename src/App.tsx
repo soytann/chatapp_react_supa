@@ -62,8 +62,7 @@ function App() {
   }, []);
 
   //PhraseCardからお引越し
-  const phraseRender = useCallback(() => {
-    (async () => {
+  const phraseRender = useCallback(async() => {
       try {
         const fetchedPhrases = await getPhrases();
         if (JSON.stringify(fetchedPhrases) !== JSON.stringify(phrases)) {
@@ -71,13 +70,12 @@ function App() {
         }
       } catch (error) {
         console.error("フレーズ取れてないよ", error);
-      };
-    })();
-  }, []);
+      }
+    }, [phrases]);
 
   useEffect(() => {
     phraseRender();
-  },[phrases])
+  },[])
 
   function handleOpenPhrases(){
     setIsPhraseOpen(true);
