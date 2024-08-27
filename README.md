@@ -1,30 +1,25 @@
-# React + TypeScript + Vite
+## 英語学習チャットアプリ　Languchat
+概要
+チャットアプリとフレーズ集を組み合わせたアプリ。会話の中で学んだフレーズなどを登録して、メッセージ作成時に参照できる。
+メーっセージ作成時日本語⇨英語の翻訳
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## デプロイURL
+(https://languchat.vercel.app/)
+email: user1@example.com
+password: 123456
+**※画面変わらない場合、リロード押してください**
 
-Currently, two official plugins are available:
+## 技術スタック
+フロントエンド: React,TypeScript Daisy-UI,Mui
+バックエンド: Supabase
+データベース: Supabase (PostgreSQL)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 難しかったこと
+- ページレイアウトの仕組み
+- リアルタイム（supabase）の設定
+  
+## 実現できなかったこと
+- 複数チャットルーム
+- 友達検索、追加機能
+- クイズ機能
