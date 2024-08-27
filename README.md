@@ -4,15 +4,15 @@
 メーっセージ作成時日本語⇨英語の翻訳
 
 ## デプロイURL
-(https://languchat.vercel.app/)
-email: user1@example.com
-password: 123456
+- (https://languchat.vercel.app/)
+- email: user1@example.com
+- password: 123456
 **※画面変わらない場合、リロード押してください**
 
 ## 技術スタック
-フロントエンド: React,TypeScript Daisy-UI,Mui
-バックエンド: Supabase
-データベース: Supabase (PostgreSQL)
+- フロントエンド: React,TypeScript Daisy-UI,Mui
+- バックエンド: Supabase
+- データベース: Supabase (PostgreSQL)
 
 
 ## 難しかったこと
